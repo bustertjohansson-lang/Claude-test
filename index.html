@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vroom – bilar och A-traktorer</title>
+  <meta name="description" content="Prototyp: en social plattform för bilar och A-traktorer.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#top" aria-label="Vroom startsida"><span class="logo-mark">V</span>Vroom</a>
+    <nav class="tabs" aria-label="Vyer">
+      <button class="tab is-active" data-view="feed" type="button">Flöde</button>
+      <button class="tab" data-view="market" type="button">Till salu <span class="badge" id="sale-count">0</span></button>
+    </nav>
+    <span class="proto-tag">Prototyp</span>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Hitta, visa och sälj <em>fordon</em> med folk som älskar dem.</h1>
+      <p>Bilar och A-traktorer – i ett socialt flöde med en marknadsplats.</p>
+    </section>
+
+    <div class="layout">
+      <details class="filters" id="filters" open>
+        <summary>Filter</summary>
+        <label class="field">Sök
+          <input id="f-search" type="search" placeholder="Märke, modell, stad…">
+        </label>
+        <fieldset class="field">
+          <legend>Fordonstyp</legend>
+          <div class="chips" id="f-type">
+            <button type="button" class="chip is-active" data-value="alla">Alla</button>
+            <button type="button" class="chip" data-value="bil">Bilar</button>
+            <button type="button" class="chip" data-value="a-traktor">A-traktorer</button>
+          </div>
+        </fieldset>
+        <label class="check"><input id="f-sale" type="checkbox"> Endast till salu</label>
+        <label class="field">Maxpris: <output id="f-price-out">Obegränsat</output>
+          <input id="f-price" type="range" min="20000" max="300000" step="10000" value="300000">
+        </label>
+        <label class="field">Sortera
+          <select id="f-sort">
+            <option value="nyast">Nyast först</option>
+            <option value="pris-lag">Lägst pris</option>
+            <option value="pris-hog">Högst pris</option>
+            <option value="gillningar">Mest gillade</option>
+          </select>
+        </label>
+        <button id="f-reset" class="btn ghost" type="button">Nollställ</button>
+      </details>
+
+      <section class="content">
+        <p id="result-info" class="result-info" aria-live="polite"></p>
+
+        <div id="view-feed">
+          <div id="feed" class="feed"></div>
+        </div>
+
+        <div id="view-market" hidden>
+          <div id="grid" class="grid"></div>
+        </div>
+
+        <p id="empty" class="empty" hidden>Inga fordon matchar filtret. Prova att nollställa.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">Vroom är en prototyp med exempeldata. Inga riktiga annonser eller användare.</footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
